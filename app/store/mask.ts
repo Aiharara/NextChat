@@ -8,6 +8,9 @@ import { createPersistStore } from "../utils/store";
 
 export type Mask = {
   id: string;
+  defaultLanguage?: Lang;
+  enableTermEnglish?: boolean;
+  enableRhetoricalQuestion?: boolean;
   createdAt: number;
   avatar: string;
   name: string;
@@ -35,6 +38,8 @@ export const DEFAULT_MASK_AVATAR = "gpt-bot";
 export const createEmptyMask = () =>
   ({
     id: nanoid(),
+    enableTermEnglish: false,
+    enableRhetoricalQuestion: false,
     avatar: DEFAULT_MASK_AVATAR,
     name: DEFAULT_TOPIC,
     context: [],

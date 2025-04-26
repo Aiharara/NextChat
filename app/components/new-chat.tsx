@@ -17,6 +17,7 @@ import { useCommand } from "../command";
 import { showConfirm } from "./ui-lib";
 import { BUILTIN_MASK_STORE } from "../masks";
 import clsx from "clsx";
+import {spans} from "next/dist/build/webpack/plugins/profiling-plugin";
 
 function MaskItem(props: { mask: Mask; onClick?: () => void }) {
   return (
@@ -41,7 +42,7 @@ function useMaskGroup(masks: Mask[]) {
       if (!appBody || masks.length === 0) return;
 
       const rect = appBody.getBoundingClientRect();
-      const maxWidth = rect.width;
+      const maxWidth = rect.width * 0.7;
       const maxHeight = rect.height * 0.6;
       const maskItemWidth = 120;
       const maskItemHeight = 50;
@@ -50,17 +51,18 @@ function useMaskGroup(masks: Mask[]) {
       let maskIndex = 0;
       const nextMask = () => masks[maskIndex++ % masks.length];
 
-      const rows = Math.ceil(maxHeight / maskItemHeight);
-      const cols = Math.ceil(maxWidth / maskItemWidth);
+      let rows = Math.max(1, Math.ceil(maxHeight / maskItemHeight));
+      let cols = Math.max(1, Math.ceil(maxWidth / maskItemWidth));
+
+      const maxNumber = (rows: number, cols: number) => Math.max(rows * cols + Math.ceil(rows / 2), 0);
 
       const newGroups = new Array(rows)
-        .fill(0)
-        .map((_, _i) =>
-          new Array(cols)
-            .fill(0)
-            .map((_, j) => (j < 1 || j > cols - 2 ? randomMask() : nextMask())),
-        );
-
+          .fill(0)
+          .map((_, _i) =>
+              new Array(cols)
+                  .fill(0)
+                  .map((_, j) => (j < 1 || j > cols - 2 ? randomMask() : nextMask())),
+          );
       setGroups(newGroups);
     };
 
@@ -135,17 +137,6 @@ export function NewChat() {
           ></IconButton>
         )}
       </div>
-      <div className={styles["mask-cards"]}>
-        <div className={styles["mask-card"]}>
-          <EmojiAvatar avatar="1f606" size={24} />
-        </div>
-        <div className={styles["mask-card"]}>
-          <EmojiAvatar avatar="1f916" size={24} />
-        </div>
-        <div className={styles["mask-card"]}>
-          <EmojiAvatar avatar="1f479" size={24} />
-        </div>
-      </div>
 
       <div className={styles["title"]}>{Locale.NewChat.Title}</div>
       <div className={styles["sub-title"]}>{Locale.NewChat.SubTitle}</div>
@@ -170,17 +161,15 @@ export function NewChat() {
       </div>
 
       <div className={styles["masks"]} ref={maskRef}>
-        {groups.map((masks, i) => (
-          <div key={i} className={styles["mask-row"]}>
-            {masks.map((mask, index) => (
-              <MaskItem
-                key={index}
-                mask={mask}
-                onClick={() => startChat(mask)}
-              />
-            ))}
-          </div>
-        ))}
+        <div className={styles["mask-container"]}>
+          {masks.map((mask, index) => (
+            <MaskItem
+              key={index}
+              mask={mask}
+              onClick={() => startChat(mask)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

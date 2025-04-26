@@ -166,6 +166,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    gap: 10px;
 
     &:hover {
       .context-drag {
@@ -181,11 +182,16 @@
     }
 
     .context-role {
-      margin-right: 10px;
     }
 
     .context-content {
       flex: 1;
+      max-width: 100%;
+      text-align: left;
+    }
+
+    .context-content-big {
+      flex: 3;
       max-width: 100%;
       text-align: left;
     }

@@ -179,6 +179,7 @@ const cn = {
     Lang: {
       Name: "Language", // 注意：如果要添加新的翻译，请不要翻译此值，将它保留为 `Language`
       All: "所有语言",
+      Any: "任意"
     },
     Avatar: "头像",
     FontSize: {
@@ -195,12 +196,20 @@ const cn = {
       SubTitle: "强制给每次请求的消息列表开头添加一个模拟 ChatGPT 的系统提示",
     },
     InputTemplate: {
-      Title: "用户输入预处理",
-      SubTitle: "用户最新的一条消息会填充到此模板",
+      Title: "用户输入预处理(全局)",
+      SubTitle: "用户全部最新的一条消息会填充到此模板",
     },
-
+    OptionalInputTemplate: {
+      Title: "用户输入预处理可选项 (开发中)",
+      SubTitle: "在聊天页每次点击选项后, 用户最新的一条消息会填充到此模板",
+      Config:{
+        Title: "预处理可选项配置",
+        Add: "新增模板",
+        NamePlaceholder: "新模板",
+      }
+    },
     Update: {
-      Version: (x: string) => `当前版本：${x}`,
+      Version: (x: string) => `当前版本：${x}-Enju`,
       IsLatest: "已是最新版本",
       CheckUpdate: "检查更新",
       IsChecking: "正在检查更新...",
@@ -290,6 +299,10 @@ const cn = {
       EditModal: {
         Title: "编辑提示词",
       },
+      Hide: {
+        Title: "隐藏内置提示词",
+        SubTitle: "在所有提示词列表中隐藏内置提示词",
+      }
     },
     HistoryCount: {
       Title: "附带历史消息数",
@@ -720,7 +733,7 @@ const cn = {
     },
     Item: {
       Info: (count: number) => `包含 ${count} 条预设对话`,
-      Chat: "对话",
+      Chat: "开始对话",
       View: "查看",
       Edit: "编辑",
       Delete: "删除",
@@ -733,6 +746,9 @@ const cn = {
       Clone: "克隆预设",
     },
     Config: {
+      DefaultLanguage: "聊天默认语言",
+      TermLanguage: "专业术语使用英文",
+      AllowRhetoricalQuestion: "允许聊天模型反问",
       Avatar: "角色头像",
       Name: "角色名称",
       Sync: {

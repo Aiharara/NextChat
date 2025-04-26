@@ -1,8 +1,8 @@
 import Fuse from "fuse.js";
-import { nanoid } from "nanoid";
-import { StoreKey } from "../constant";
-import { getLang } from "../locales";
-import { createPersistStore } from "../utils/store";
+import {nanoid} from "nanoid";
+import {StoreKey} from "../constant";
+import {getLang} from "../locales";
+import {createPersistStore} from "../utils/store";
 
 export interface Prompt {
   id: string;
@@ -52,6 +52,7 @@ export const usePromptStore = createPersistStore(
   {
     counter: 0,
     prompts: {} as Record<string, Prompt>,
+    enableHideBuiltinPrompts: false,
   },
 
   (set, get) => ({
@@ -124,11 +125,20 @@ export const usePromptStore = createPersistStore(
 
     search(text: string) {
       if (text.length === 0) {
-        // return all rompts
+        // return all prompts
         return this.getUserPrompts().concat(SearchService.builtinPrompts);
       }
       return SearchService.search(text) as Prompt[];
     },
+
+    toggleEnableHideBuiltinPrompts() {
+      const currentValue = get().enableHideBuiltinPrompts;
+      set({ enableHideBuiltinPrompts: !currentValue });  // 在状态改变时进行持久化
+    },
+
+    getEnableHideBuiltinPrompts() {
+      return Object.values(get().enableHideBuiltinPrompts ?? false);
+    }
   }),
   {
     name: StoreKey.Prompt,
@@ -176,13 +186,15 @@ export const usePromptStore = createPersistStore(
           });
 
           const userPrompts = usePromptStore.getState().getUserPrompts() ?? [];
+          const enableHideBuiltinPrompts = usePromptStore.getState().getEnableHideBuiltinPrompts() ?? false;
 
-          const allPromptsForSearch = builtinPrompts
+          const builtinPrompt = enableHideBuiltinPrompts ? [] : builtinPrompts
             .reduce((pre, cur) => pre.concat(cur), [])
             .filter((v) => !!v.title && !!v.content);
           SearchService.count.builtin =
             res.en.length + res.cn.length + res.tw.length;
-          SearchService.init(allPromptsForSearch, userPrompts);
+
+          SearchService.init(builtinPrompt, userPrompts);
         });
     },
   },

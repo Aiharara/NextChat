@@ -113,6 +113,58 @@ export function MaskConfig(props: {
       />
 
       <List>
+        <ListItem title={Locale.Mask.Config.DefaultLanguage}>
+          <Select
+              className={styles["mask-filter-lang"]}
+              value={props.mask.defaultLanguage ?? Locale.Settings.Lang.Any}
+              onChange={(e) => {
+                const lang = e.currentTarget.value as Lang;
+                props.updateMask((mask) => (mask.defaultLanguage = lang));
+              }}
+          >
+            <option key="any" value={Locale.Settings.Lang.Any}>
+              {Locale.Settings.Lang.Any}
+            </option>
+            {AllLangs.map((lang) => (
+                <option value={lang} key={lang}>
+                  {ALL_LANG_OPTIONS[lang]}
+                </option>
+            ))}
+          </Select>
+        </ListItem>
+
+        <ListItem
+            title={Locale.Mask.Config.TermLanguage}
+        >
+          <input
+              aria-label={Locale.Mask.Config.HideContext.Title}
+              type="checkbox"
+              checked={props.mask.enableTermEnglish}
+              onChange={(e) => {
+                props.updateMask((mask) => {
+                  mask.enableTermEnglish = e.currentTarget.checked;
+                });
+              }}
+          ></input>
+        </ListItem>
+
+        <ListItem
+            title={Locale.Mask.Config.AllowRhetoricalQuestion}
+        >
+          <input
+              aria-label={Locale.Mask.Config.AllowRhetoricalQuestion}
+              type="checkbox"
+              checked={props.mask.enableRhetoricalQuestion}
+              onChange={(e) => {
+                props.updateMask((mask) => {
+                  mask.enableRhetoricalQuestion = e.currentTarget.checked;
+                });
+              }}
+          ></input>
+        </ListItem>
+      </List>
+
+      <List>
         <ListItem title={Locale.Mask.Config.Avatar}>
           <Popover
             content={
@@ -641,6 +693,7 @@ export function MaskPage() {
           <Modal
             title={Locale.Mask.EditModal.Title(editingMask?.builtin)}
             onClose={closeMaskModal}
+            defaultMax={true}
             actions={[
               <IconButton
                 icon={<DownloadIcon />}

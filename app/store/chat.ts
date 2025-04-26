@@ -28,7 +28,7 @@ import {
   StoreKey,
   SUMMARIZE_MODEL,
 } from "../constant";
-import Locale, { getLang } from "../locales";
+import Locale, {ALL_LANG_OPTIONS, getLang} from "../locales";
 import { prettyObject } from "../utils/format";
 import { createPersistStore } from "../utils/store";
 import { estimateTokenLength } from "../utils/token";
@@ -555,10 +555,13 @@ export const useChatStore = createPersistStore(
           (session.mask.modelConfig.model.startsWith("gpt-") ||
             session.mask.modelConfig.model.startsWith("chatgpt-"));
 
+        const shouldInjectMaskPrompts = session.mask.defaultLanguage || session.mask.enableTermEnglish;
+
         const mcpEnabled = await isMcpEnabled();
         const mcpSystemPrompt = mcpEnabled ? await getMcpSystemPrompt() : "";
 
         var systemPrompts: ChatMessage[] = [];
+        var maskPrompts: ChatMessage[] = [];
 
         if (shouldInjectSystemPrompts) {
           systemPrompts = [
@@ -585,6 +588,28 @@ export const useChatStore = createPersistStore(
             "[Global System Prompt] ",
             systemPrompts.at(0)?.content ?? "empty",
           );
+        }
+
+        if (shouldInjectMaskPrompts) {
+          let maskPrompt = ""
+          console.log(session.mask.defaultLanguage)
+          if (session.mask.defaultLanguage) {
+            maskPrompt += "You should respond in " + ALL_LANG_OPTIONS[session.mask.defaultLanguage] + " unless the user has specific requests otherwise. ";
+          }
+          if (session.mask.enableTermEnglish) {
+            maskPrompt += "Use English to answer the terms. ";
+          }
+          if (session.mask.enableRhetoricalQuestion) {
+            maskPrompt += "Rhetorical question is allowed. ";
+          }
+          maskPrompt = maskPrompt.trim();
+          maskPrompts = [
+            createMessage({
+              role: "system",
+              content: maskPrompt,
+              date: new Date().toLocaleString(),
+            }),
+          ];
         }
         const memoryPrompt = get().getMemoryPrompt();
         // long term memory
@@ -632,6 +657,7 @@ export const useChatStore = createPersistStore(
         const recentMessages = [
           ...systemPrompts,
           ...longTermMemoryPrompts,
+          ...maskPrompts,
           ...contextPrompts,
           ...reversedRecentMessages.reverse(),
         ];

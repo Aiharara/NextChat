@@ -641,6 +641,7 @@ export function Settings() {
   );
 
   const promptStore = usePromptStore();
+  console.log("promptStore.getUserPrompts()", promptStore.enableHideBuiltinPrompts)
   const builtinCount = SearchService.count.builtin;
   const customCount = promptStore.getUserPrompts().length ?? 0;
   const [shouldShowPromptModal, setShowPromptModal] = useState(false);
@@ -1771,6 +1772,19 @@ export function Settings() {
               text={Locale.Settings.Prompt.Edit}
               onClick={() => setShowPromptModal(true)}
             />
+          </ListItem>
+          <ListItem
+              title={Locale.Settings.Prompt.Hide.Title}
+              subTitle={Locale.Settings.Prompt.Hide.SubTitle}
+          >
+            <input
+                aria-label={Locale.Settings.Prompt.Hide.Title}
+                type="checkbox"
+                checked={promptStore.enableHideBuiltinPrompts}
+                onChange={(e) => {
+                  promptStore.toggleEnableHideBuiltinPrompts();
+                }}
+            ></input>
           </ListItem>
         </List>
 
