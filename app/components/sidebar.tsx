@@ -18,7 +18,7 @@ import Locale from "../locales";
 import { useAppConfig, useChatStore } from "../store";
 
 import {
-  DEFAULT_SIDEBAR_WIDTH,
+  DEFAULT_SIDEBAR_WIDTH, FORK_REPO_URL,
   MAX_SIDEBAR_WIDTH,
   MIN_SIDEBAR_WIDTH,
   NARROW_SIDEBAR_WIDTH,
@@ -250,7 +250,7 @@ export function SideBar(props: { className?: string }) {
       {...props}
     >
       <SideBarHeader
-        title="Chat"
+        title="Chat 鸡PT"
         subTitle="智能集成，智慧无限"
         logo={<ChatGptIcon />}
         shouldNarrow={shouldNarrow}
@@ -337,7 +337,7 @@ export function SideBar(props: { className?: string }) {
               </Link>
             </div>
             <div className={styles["sidebar-action"]}>
-              <a href={REPO_URL} target="_blank" rel="noopener noreferrer">
+              <a href={FORK_REPO_URL} target="_blank" rel="noopener noreferrer">
                 <IconButton
                   aria={Locale.Export.MessageFromChatGPT}
                   icon={<GithubIcon />}

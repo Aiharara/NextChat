@@ -1,5 +1,8 @@
 export const OWNER = "ChatGPTNextWeb";
 export const REPO = "ChatGPT-Next-Web";
+export const FORK_OWNER = "Aiharara";
+export const FORK_REPO = "NextChat";
+export const FORK_REPO_URL = `https://github.com/${FORK_OWNER}/${FORK_REPO}`;
 export const REPO_URL = `https://github.com/${OWNER}/${REPO}`;
 export const PLUGINS_REPO_URL = `https://github.com/${OWNER}/NextChat-Awesome-Plugins`;
 export const ISSUE_URL = `https://github.com/${OWNER}/${REPO}/issues`;

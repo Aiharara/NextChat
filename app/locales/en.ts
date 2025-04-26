@@ -178,8 +178,9 @@ const en: LocaleType = {
       },
     },
     Lang: {
-      Name: "Language", // ATTENTION: if you wanna add a new translation, please do not translate this value, leave it as `Language`
+      Name: "Language",
       All: "All Languages",
+      Any: "Any Language"
     },
     Avatar: "Avatar",
     FontSize: {
@@ -188,8 +189,7 @@ const en: LocaleType = {
     },
     FontFamily: {
       Title: "Chat Font Family",
-      SubTitle:
-        "Font Family of the chat content, leave empty to apply global default font",
+      SubTitle: "Font Family of the chat content, leave empty to apply global default font",
       Placeholder: "Font Family Name",
     },
     InjectSystemPrompts: {
@@ -243,8 +243,7 @@ const en: LocaleType = {
         },
         ProxyUrl: {
           Title: "Proxy Endpoint",
-          SubTitle:
-            "Only applicable to the built-in CORS proxy for this project",
+          SubTitle: "Only applicable to the built-in CORS proxy for this project",
         },
 
         WebDav: {
@@ -282,8 +281,7 @@ const en: LocaleType = {
         SubTitle: "Input / to trigger auto-completion",
       },
       List: "Prompt List",
-      ListCount: (builtin: number, custom: number) =>
-        `${builtin} built-in, ${custom} user-defined`,
+      ListCount: (builtin: number, custom: number) => `${builtin} built-in, ${custom} user-defined`,
       Edit: "Edit",
       Modal: {
         Title: "Prompt List",
@@ -293,6 +291,10 @@ const en: LocaleType = {
       EditModal: {
         Title: "Edit Prompt",
       },
+      Hide: {
+        Title: "Hide builtin prompts",
+        SubTitle: "Hide builtin prompts in all prompts list",
+      }
     },
     HistoryCount: {
       Title: "Attached Messages Count",
@@ -300,8 +302,7 @@ const en: LocaleType = {
     },
     CompressThreshold: {
       Title: "History Compression Threshold",
-      SubTitle:
-        "Will compress if uncompressed messages length exceeds the value",
+      SubTitle: "Will compress if uncompressed messages length exceeds the value",
     },
 
     Usage: {
@@ -317,9 +318,8 @@ const en: LocaleType = {
       SaasStart: {
         Title: "Use NextChat AI",
         Label: " (Most Cost-Effective Option)",
-        SubTitle:
-          "Maintained by NextChat, zero setup needed, unlock OpenAI o1, GPT-4o," +
-          " Claude-3.5 and more",
+        SubTitle: "Maintained by NextChat, zero setup needed, unlock OpenAI o1, GPT-4o," +
+            " Claude-3.5 and more",
         ChatNow: "Start Now",
       },
       AccessCode: {
@@ -367,8 +367,7 @@ const en: LocaleType = {
       Anthropic: {
         ApiKey: {
           Title: "Anthropic API Key",
-          SubTitle:
-            "Use a custom Anthropic Key to bypass password access restrictions",
+          SubTitle: "Use a custom Anthropic Key to bypass password access restrictions",
           Placeholder: "Anthropic API Key",
         },
 
@@ -564,13 +563,11 @@ const en: LocaleType = {
     },
     PresencePenalty: {
       Title: "Presence Penalty",
-      SubTitle:
-        "A larger value increases the likelihood to talk about new topics",
+      SubTitle: "A larger value increases the likelihood to talk about new topics",
     },
     FrequencyPenalty: {
       Title: "Frequency Penalty",
-      SubTitle:
-        "A larger value decreasing the likelihood to repeat the same line",
+      SubTitle: "A larger value decreasing the likelihood to repeat the same line",
     },
     TTS: {
       Enable: {
@@ -579,8 +576,7 @@ const en: LocaleType = {
       },
       Autoplay: {
         Title: "Enable Autoplay",
-        SubTitle:
-          "Automatically generate speech and play, you need to enable the text-to-speech switch first",
+        SubTitle: "Automatically generate speech and play, you need to enable the text-to-speech switch first",
       },
       Model: "Model",
       Voice: {
@@ -626,6 +622,15 @@ const en: LocaleType = {
         SubTitle: "Higher values result in more random responses",
       },
     },
+    OptionalInputTemplate: {
+      Title: "User Input Preprocessing Options (Under Development)",
+      SubTitle: "After clicking an option on the chat page, the user's latest message will populate this template",
+      Config: {
+        Title: "Preprocessing Options Configuration",
+        Add: "Add Template",
+        NamePlaceholder: "New Template"
+      }
+    }
   },
   Store: {
     DefaultTopic: "New Conversation",
@@ -760,14 +765,16 @@ const en: LocaleType = {
       },
       CodeFold: {
         Title: "Enable CodeFold",
-        SubTitle:
-          "Automatically collapse/expand overly long code blocks when CodeFold is enabled",
+        SubTitle: "Automatically collapse/expand overly long code blocks when CodeFold is enabled",
       },
       Share: {
         Title: "Share This Mask",
         SubTitle: "Generate a link to this mask",
         Action: "Copy Link",
       },
+      DefaultLanguage: "",
+      TermLanguage: "",
+      AllowRhetoricalQuestion: ""
     },
   },
   NewChat: {
