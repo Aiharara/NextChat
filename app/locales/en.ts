@@ -9,14 +9,14 @@ const en: LocaleType = {
   WIP: "Coming Soon...",
   Error: {
     Unauthorized: isApp
-      ? `😆 Oops, there's an issue. No worries:
-     \\ 1️⃣ New here? [Click to start chatting now 🚀](${SAAS_CHAT_UTM_URL})
-     \\ 2️⃣ Want to use your own OpenAI resources? [Click here](/#/settings) to change settings ⚙️`
-      : `😆 Oops, there's an issue. Let's fix it:
-     \ 1️⃣ New here? [Click to start chatting now 🚀](${SAAS_CHAT_UTM_URL})
-     \ 2️⃣ Using a private setup? [Click here](/#/auth) to enter your key 🔑
-     \ 3️⃣ Want to use your own OpenAI resources? [Click here](/#/settings) to change settings ⚙️
-     `,
+        ? `😆 There was an issue with the conversation, don't worry:
+       \\ 1️⃣ If you haven't entered the access code yet, please [Click here](/#/auth) to enter your key 🔑
+       \\ 2️⃣ If there's an error indicating a network connection issue, consider enabling a VPN`
+        : `😆 There was an issue with the conversation, don't worry:
+       \ 1️⃣ If you haven't entered the access code yet, please [Click here](/#/auth) to enter your key 🔑
+       \ 2️⃣ If there's an error indicating a network connection issue, consider enabling a VPN 
+       \ 3️⃣ If you want to use your own model key resources, click [here](/#/settings) to change settings ⚙️
+       `,
   },
   Auth: {
     Return: "Return",
