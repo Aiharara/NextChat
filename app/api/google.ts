@@ -71,7 +71,7 @@ export const preferredRegion = [
 async function request(req: NextRequest, apiKey: string) {
   const controller = new AbortController();
 
-  let baseUrl = serverConfig.googleUrl || GEMINI_BASE_URL;
+  let baseUrl = serverConfig.googleUrl || serverConfig.googleUrl || GEMINI_BASE_URL;
 
   let path = `${req.nextUrl.pathname}`.replaceAll(ApiPath.Google, "");
 
