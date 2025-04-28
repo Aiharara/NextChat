@@ -314,8 +314,6 @@ export function getHeaders(ignoreHeaders: boolean = false) {
       ? "api-key"
       : isAnthropic
       ? "x-api-key"
-      : isGoogle
-      ? "x-goog-api-key"
       : "Authorization";
   }
 
@@ -342,7 +340,8 @@ export function getHeaders(ignoreHeaders: boolean = false) {
 
   const bearerToken = getBearerToken(
     apiKey,
-    isAzure || isAnthropic || isGoogle,
+    isAzure || isAnthropic
+    // isAzure || isAnthropic || isGoogle,
   );
 
   if (bearerToken) {
