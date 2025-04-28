@@ -17,7 +17,7 @@ export const STABILITY_BASE_URL = "https://api.stability.ai";
 export const OPENAI_BASE_URL = "https://api.openai.com";
 export const ANTHROPIC_BASE_URL = "https://api.anthropic.com";
 
-export const GEMINI_BASE_URL = "https://api.claude-plus.top";
+export const GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/";
 
 export const BAIDU_BASE_URL = "https://aip.baidubce.com";
 export const BAIDU_OATUH_URL = `${BAIDU_BASE_URL}/oauth/2.0/token`;
