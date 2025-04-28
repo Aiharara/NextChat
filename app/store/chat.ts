@@ -946,8 +946,8 @@ export const useChatStore = createPersistStore(
       if (version < 3.3) {
         newState.sessions.forEach((s) => {
           const config = useAppConfig.getState();
-          s.mask.modelConfig.compressModel = "";
-          s.mask.modelConfig.compressProviderName = "";
+          s.mask.modelConfig.compressModel = config.modelConfig.compressModel;
+          s.mask.modelConfig.compressProviderName = config.modelConfig.compressProviderName;
         });
       }
 
