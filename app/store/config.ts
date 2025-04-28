@@ -58,15 +58,15 @@ export const DEFAULT_CONFIG = {
 
   disablePromptHint: false,
 
-  dontShowMaskSplashScreen: false, // dont show splash screen when create chat
+  dontShowMaskSplashScreen: false, // don't show splash screen when create chat
   hideBuiltinMasks: false, // dont add builtin masks
 
   customModels: "",
   models: DEFAULT_MODELS as any as LLMModel[],
 
   modelConfig: {
-    model: "gpt-4o-mini" as ModelType,
-    providerName: "OpenAI" as ServiceProvider,
+    model: "gpt-4o" as ModelType,
+    providerName: ServiceProvider.OpenAI,
     temperature: 0.5,
     top_p: 1,
     max_tokens: 4000,
@@ -75,8 +75,8 @@ export const DEFAULT_CONFIG = {
     sendMemory: true,
     historyMessageCount: 4,
     compressMessageLengthThreshold: 1000,
-    compressModel: "",
-    compressProviderName: "",
+    compressModel: "gpt-4o-mini" as ModelType,
+    compressProviderName: ServiceProvider.OpenAI,
     enableInjectSystemPrompts: true,
     template: config?.template ?? DEFAULT_INPUT_TEMPLATE,
     optionalTemplate: [] as {name: string; template: string;}[],

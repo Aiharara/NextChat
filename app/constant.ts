@@ -489,9 +489,8 @@ export const VISION_MODEL_REGEXES = [
 export const EXCLUDE_VISION_MODEL_REGEXES = [/claude-3-5-haiku-20241022/];
 
 const openaiModels = [
-  "推荐4o, 4.1和o1",
-  "gpt-4o",
   "gpt-4o-mini",
+  "gpt-4o",
   "gpt-4o-search-preview",
   "gpt-4o-mini-search-preview",
   "gpt-4.1",
