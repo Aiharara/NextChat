@@ -8,6 +8,9 @@ import {getMessageImages, getMessageTextContent, getTimeoutMSByModel, isVisionMo
 import {nanoid} from "nanoid";
 import {RequestPayload} from "./openai";
 import {fetch} from "@/app/utils/stream";
+import {getServerSideConfig} from "@/app/config/server";
+
+const serverConfig = getServerSideConfig();
 
 export class GeminiProApi implements LLMApi {
   path(path: string): string {
@@ -20,9 +23,11 @@ export class GeminiProApi implements LLMApi {
     console.log("[baseURL]", baseUrl);
     const isApp = !!getClientConfig()?.isApp;
     if (baseUrl.length === 0) {
-      baseUrl = isApp ? GEMINI_BASE_URL : ApiPath.Google;
+      baseUrl = isApp ? GEMINI_BASE_URL : (serverConfig.googleUrl || ApiPath.Google);
     }
     console.log("[baseURL]", baseUrl);
+
+
     if (baseUrl.endsWith("/")) {
       baseUrl = baseUrl.slice(0, baseUrl.length - 1);
     }

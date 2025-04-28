@@ -28,7 +28,6 @@ export function ModelConfigList(props: {
   updateConfig: (updater: (config: ModelConfig) => void) => void;
 }) {
   const allModels = useAllModels();
-  console.log("[allModels]", allModels);
   const groupModels = groupBy(
     allModels.filter((v) => v.available),
     "provider.providerName",
