@@ -267,7 +267,7 @@ export function getHeaders(ignoreHeaders: boolean = false) {
       modelConfig.providerName === ServiceProvider.SiliconFlow;
     const isEnabledAccessControl = accessStore.enabledAccessControl();
     const apiKey = isGoogle
-      ? accessStore.googleApiKey
+      ? "sk-SSpb2G9KZ0zMvx2dBS37EP5TMRAFeKrepeNdZWNHf8pvodpT"
       : isAzure
       ? accessStore.azureApiKey
       : isAnthropic
