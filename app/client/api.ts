@@ -344,6 +344,8 @@ export function getHeaders(ignoreHeaders: boolean = false) {
     // isAzure || isAnthropic || isGoogle,
   );
 
+  console.log("[bearerToken]", bearerToken);
+
   if (bearerToken) {
     headers[authHeader] = bearerToken;
   } else if (isEnabledAccessControl && validString(accessStore.accessCode)) {

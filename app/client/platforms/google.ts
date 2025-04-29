@@ -23,12 +23,8 @@ export class GeminiProApi implements LLMApi {
     console.log("[baseURL]", baseUrl);
     const isApp = !!getClientConfig()?.isApp;
     if (baseUrl.length === 0) {
-      baseUrl = isApp ? GEMINI_BASE_URL : (serverConfig.googleUrl || ApiPath.Google);
+      baseUrl = isApp ? GEMINI_BASE_URL : "https://api.claude-plus.top";
     }
-    console.log(serverConfig.googleUrl);
-    console.log(serverConfig.googleApiKey);
-    console.log(serverConfig.baseUrl);
-    console.log(serverConfig.deepseekUrl);
     console.log("[baseURL]", baseUrl);
 
 
