@@ -292,7 +292,6 @@ export function getHeaders(ignoreHeaders: boolean = false) {
         : ""
       : accessStore.openaiApiKey;
 
-    console.log("[Google Key]", accessStore.googleApiKey);
     return {
       isGoogle,
       isAzure,
@@ -345,8 +344,6 @@ export function getHeaders(ignoreHeaders: boolean = false) {
     isAzure || isAnthropic
     // isAzure || isAnthropic || isGoogle,
   );
-
-  console.log("[bearerToken]", bearerToken);
 
   if (bearerToken) {
     headers[authHeader] = bearerToken;
