@@ -74,7 +74,7 @@ export const DEFAULT_CONFIG = {
     frequency_penalty: 0,
     sendMemory: true,
     historyMessageCount: 4,
-    compressMessageLengthThreshold: 1000,
+    compressMessageLengthThreshold: 10000,
     compressModel: "gpt-4o-mini" as ModelType,
     compressProviderName: ServiceProvider.OpenAI,
     enableInjectSystemPrompts: true,
@@ -212,7 +212,7 @@ export const useAppConfig = createPersistStore(
       if (version < 3.4) {
         state.modelConfig.sendMemory = true;
         state.modelConfig.historyMessageCount = 4;
-        state.modelConfig.compressMessageLengthThreshold = 1000;
+        state.modelConfig.compressMessageLengthThreshold = 10000;
         state.modelConfig.frequency_penalty = 0;
         state.modelConfig.top_p = 1;
         state.modelConfig.template = DEFAULT_INPUT_TEMPLATE;

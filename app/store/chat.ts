@@ -903,7 +903,7 @@ export const useChatStore = createPersistStore(
           newSession.messages = [...oldSession.messages];
           newSession.mask.modelConfig.sendMemory = true;
           newSession.mask.modelConfig.historyMessageCount = 4;
-          newSession.mask.modelConfig.compressMessageLengthThreshold = 1000;
+          newSession.mask.modelConfig.compressMessageLengthThreshold = 10000;
           newState.sessions.push(newSession);
         }
       }

@@ -473,7 +473,7 @@ export const VISION_MODEL_REGEXES = [
   /gpt-4\.1/,
   /gpt-5/,
   /claude/,
-  /Doubao-Seed/i,
+  /doubao-seed/i,
   /gemini-1\.5/,
   /gemini-exp/,
   /gemini-2\.0/,
@@ -520,10 +520,10 @@ const baiduModels = [
 ];
 
 const bytedanceModels = [
-  { name: "Doubao-Seed-2.0-pro", displayName: "Doubao Seed 2.0 Pro" },
-  { name: "Doubao-Seed-2.0-lite", displayName: "Doubao Seed 2.0 Lite" },
-  { name: "Doubao-Seed-2.0-mini", displayName: "Doubao Seed 2.0 Mini" },
-  { name: "Doubao-Seed-2.0-Code", displayName: "Doubao Seed 2.0 Code" },
+  { name: "doubao-seed-2-0-pro-260215", displayName: "Doubao Seed 2.0 Pro" },
+  { name: "doubao-seed-2-0-lite-260428", displayName: "Doubao Seed 2.0 Lite" },
+  { name: "doubao-seed-2-0-mini-260428", displayName: "Doubao Seed 2.0 Mini" },
+  { name: "doubao-seed-2-0-code-preview-260215", displayName: "Doubao Seed 2.0 Code" },
 ];
 
 const alibabaModes = [
