@@ -471,7 +471,9 @@ export const VISION_MODEL_REGEXES = [
   /vision/,
   /gpt-4o/,
   /gpt-4\.1/,
-  /claude-3/,
+  /gpt-5/,
+  /claude/,
+  /Doubao-Seed/i,
   /gemini-1\.5/,
   /gemini-exp/,
   /gemini-2\.0/,
@@ -486,36 +488,21 @@ export const VISION_MODEL_REGEXES = [
   /o4-mini/,
 ];
 
-export const EXCLUDE_VISION_MODEL_REGEXES = [/claude-3-5-haiku-20241022/];
+export const EXCLUDE_VISION_MODEL_REGEXES: RegExp[] = [];
 
 const openaiModels = [
-  "gpt-4o-mini",
-  "gpt-4o",
-  "gpt-4.1",
-  "gpt-4.1-mini",
-  "gpt-4.1-nano",
-  "gpt-5.2",
-  "gpt-5-mini",
-  "gpt-5-nano",
-  "o1-preview",
-  "o1-mini",
+  { name: "gpt-5.5", displayName: "GPT-5.5" },
+  { name: "gpt-5-nano-2025-08-07", displayName: "GPT-5 Nano" },
+  { name: "gpt-4.1-2025-04-14", displayName: "GPT-4.1" },
 ];
 
-const googleModels = [
-  "gemini-1.5-flash-latest",
-  "gemini-1.5-pro-latest",
-  "gemini-2.0-flash-exp",
-  "gemini-2.0-flash-thinking-exp",
-  "gemini-2.0-flash-thinking-exp-1219",
-  "gemini-2.5-pro-exp-03-25",
-  "gemini-2.5-pro-preview-03-25",
-];
+const googleModels: { name: string; displayName: string }[] = [];
 
 const anthropicModels = [
-  "claude-3-5-haiku-20241022",
-  "claude-3-5-sonnet-20241022",
-  "claude-3-7-sonnet-20250219",
-  "claude-3-opus-20240229",
+  { name: "claude-opus-4-6", displayName: "Claude Opus 4.6" },
+  { name: "claude-opus-4-7", displayName: "Claude Opus 4.7" },
+  { name: "claude-sonnet-4-6", displayName: "Claude Sonnet 4.6" },
+  { name: "claude-haiku-4-5-20251001", displayName: "Claude Haiku 4.5" },
 ];
 
 const baiduModels = [
@@ -533,8 +520,10 @@ const baiduModels = [
 ];
 
 const bytedanceModels = [
-  "doubao-1-5-pro-256k-250115",
-  "doubao-1-5-lite-32k-250115",
+  { name: "Doubao-Seed-2.0-pro", displayName: "Doubao Seed 2.0 Pro" },
+  { name: "Doubao-Seed-2.0-lite", displayName: "Doubao Seed 2.0 Lite" },
+  { name: "Doubao-Seed-2.0-mini", displayName: "Doubao Seed 2.0 Mini" },
+  { name: "Doubao-Seed-2.0-Code", displayName: "Doubao Seed 2.0 Code" },
 ];
 
 const alibabaModes = [
@@ -570,7 +559,10 @@ const iflytekModels = [
   "4.0Ultra",
 ];
 
-const deepseekModels = ["deepseek-chat", "deepseek-coder", "deepseek-reasoner"];
+const deepseekModels = [
+  { name: "deepseek-v4-flash", displayName: "DeepSeek V4 Flash" },
+  { name: "deepseek-v4-pro", displayName: "DeepSeek V4 Pro" },
+];
 
 const xAIModes = [
   "grok-beta",
@@ -622,15 +614,16 @@ const siliconflowModels = [
 
 let seq = 1000; // 内置的模型序号生成器从1000开始
 export const DEFAULT_MODELS = [
-  ...openaiModels.map((name) => ({
-    name,
+  ...openaiModels.map((m) => ({
+    name: m.name,
+    displayName: m.displayName,
     available: true,
-    sorted: seq++, // Global sequence sort(index)
+    sorted: seq++,
     provider: {
       id: "openai",
       providerName: "OpenAI",
       providerType: "openai",
-      sorted: 1, // 这里是固定的，确保顺序与之前内置的版本一致
+      sorted: 1,
     },
   })),
   // ...openaiModels.map((name) => ({
@@ -644,8 +637,9 @@ export const DEFAULT_MODELS = [
   //     sorted: 2,
   //   },
   // })),
-  ...googleModels.map((name) => ({
-    name,
+  ...googleModels.map((m) => ({
+    name: m.name,
+    displayName: m.displayName,
     available: true,
     sorted: seq++,
     provider: {
@@ -655,8 +649,9 @@ export const DEFAULT_MODELS = [
       sorted: 3,
     },
   })),
-  ...anthropicModels.map((name) => ({
-    name,
+  ...anthropicModels.map((m) => ({
+    name: m.name,
+    displayName: m.displayName,
     available: true,
     sorted: seq++,
     provider: {
@@ -677,8 +672,9 @@ export const DEFAULT_MODELS = [
   //     sorted: 5,
   //   },
   // })),
-  ...bytedanceModels.map((name) => ({
-    name,
+  ...bytedanceModels.map((m) => ({
+    name: m.name,
+    displayName: m.displayName,
     available: true,
     sorted: seq++,
     provider: {
@@ -754,8 +750,9 @@ export const DEFAULT_MODELS = [
   //     sorted: 12,
   //   },
   // })),
-  ...deepseekModels.map((name) => ({
-    name,
+  ...deepseekModels.map((m) => ({
+    name: m.name,
+    displayName: m.displayName,
     available: true,
     sorted: seq++,
     provider: {
