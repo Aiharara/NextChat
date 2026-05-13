@@ -200,6 +200,8 @@ export class ChatGPTApi implements LLMApi {
       options.config.model.startsWith("o1") ||
       options.config.model.startsWith("o3") ||
       options.config.model.startsWith("o4-mini");
+    const isGPT5 =
+      options.config.model.startsWith("gpt-5");
     if (isDalle3) {
       const prompt = getMessageTextContent(
         options.messages.slice(-1)?.pop() as any,
@@ -238,13 +240,13 @@ export class ChatGPTApi implements LLMApi {
         // Please do not ask me why not send max_tokens, no reason, this param is just shit, I dont want to explain anymore.
       };
 
-      // O1 使用 max_completion_tokens 控制token数 (https://platform.openai.com/docs/guides/reasoning#controlling-costs)
-      if (isO1OrO3) {
+      // O1/O3/GPT-5 使用 max_completion_tokens 控制token数
+      if (isO1OrO3 || isGPT5) {
         requestPayload["max_completion_tokens"] = modelConfig.max_tokens;
       }
 
-      // add max_tokens to vision model
-      if (visionModel && !isO1OrO3) {
+      // add max_tokens to vision model (not for O1/O3/GPT-5)
+      if (visionModel && !isO1OrO3 && !isGPT5) {
         requestPayload["max_tokens"] = Math.max(modelConfig.max_tokens, 4000);
       }
     }
