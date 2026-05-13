@@ -232,10 +232,12 @@ export class ChatGPTApi implements LLMApi {
         messages,
         stream: options.config.stream,
         model: modelConfig.model,
-        temperature: !isO1OrO3 ? modelConfig.temperature : 1,
-        presence_penalty: !isO1OrO3 ? modelConfig.presence_penalty : 0,
-        frequency_penalty: !isO1OrO3 ? modelConfig.frequency_penalty : 0,
-        top_p: !isO1OrO3 ? modelConfig.top_p : 1,
+        temperature: !isO1OrO3 && !isGPT5 ? modelConfig.temperature : 1,
+        presence_penalty:
+          !isO1OrO3 && !isGPT5 ? modelConfig.presence_penalty : 0,
+        frequency_penalty:
+          !isO1OrO3 && !isGPT5 ? modelConfig.frequency_penalty : 0,
+        top_p: !isO1OrO3 && !isGPT5 ? modelConfig.top_p : 1,
         // max_tokens: Math.max(modelConfig.max_tokens, 1024),
         // Please do not ask me why not send max_tokens, no reason, this param is just shit, I dont want to explain anymore.
       };
